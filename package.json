@@ -1,0 +1,28 @@
+{
+  "name": "borrowit",
+  "version": "0.1.0",
+  "description": "Point of borrow application for lending out hackathon hardware",
+  "scripts": {
+    "start-api": "cd api && npm run dev",
+    "start-client": "cd client && npm run start",
+    "start-all": "concurrently \"npm run start-api\" \"npm run start-client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hackwitus/borrowIt.git"
+  },
+  "keywords": [
+    "nodejs",
+    "react",
+    "javascript",
+    "fastify"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hackwitus/borrowIt/issues"
+  },
+  "homepage": "https://github.com/hackwitus/borrowIt#readme",
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  }
+}
