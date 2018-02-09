@@ -1,10 +1,11 @@
 {
   "name": "borrowit",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Point of borrow application for lending out hackathon hardware",
-  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-api": "cd api && npm run dev",
+    "start-client": "cd client && npm run start",
+    "start-all": "concurrently \"npm run start-api\" \"npm run start-client\""
   },
   "repository": {
     "type": "git",
@@ -16,10 +17,12 @@
     "javascript",
     "fastify"
   ],
-  "author": "Ethan Arrowood",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/hackwitus/borrowIt/issues"
   },
-  "homepage": "https://github.com/hackwitus/borrowIt#readme"
+  "homepage": "https://github.com/hackwitus/borrowIt#readme",
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  }
 }
