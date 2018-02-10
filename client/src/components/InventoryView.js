@@ -27,7 +27,24 @@ class InventoryView extends React.Component {
           this.state.isMobile ? (
             <p className="text-danger">Replace me with a mobile component</p>
           ) : (
-            <InventoryTable />
+            <InventoryTable table={[
+              {
+                id: "01",
+                name: "Raspberry Pi",
+                description: "Mini computer",
+                number: 2,
+                available: true,
+                owner: "MLH"
+              },
+              {
+                id: "02",
+                name: "Raspberry Pi 2",
+                description: "Mini computer",
+                number: 0,
+                available: false,
+                owner: "IEEE"
+              }
+            ]}/>
           )
         }
       </React.Fragment>
