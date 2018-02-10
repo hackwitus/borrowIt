@@ -18,9 +18,9 @@ const renderTable = items => {
       </tr>
       {items.map(item => (
         <tr>
-          <th scope="row">{item.number}</th>
+          <th scope="row">{item.numberAvailable}</th>
 
-          <td><span className={item.available ? ("oi oi-check text-success") : ("oi oi-x text-danger")}></span></td>
+          <td><span className={item.numberAvailable > 0 ? ("oi oi-check text-success") : ("oi oi-x text-danger")}></span></td>
           <td>{item.name}</td>
           <td>{item.description}</td>
           <td>{item.owner}</td>
@@ -36,7 +36,7 @@ class InventoryTable extends React.Component {
   render() {
     return (
       <div>
-        { renderTable(this.props.table) }
+        { renderTable(this.props.inventoryItems) }
       </div>
     )
   }
