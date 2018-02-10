@@ -1,19 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
 
-const renderCart = items => {
-  console.log(items)
-  return items ? (
-    <ul>
-      {items.map(item => (
-        <li key={item.id}>{item.name}</li>
-      ))}
-    </ul>
-  ) : (
-    <p>Your cart is empty.</p>
-  )
-}
-
 class Checkout extends React.Component {
   constructor(props) {
     super(props)
@@ -57,10 +44,6 @@ class Checkout extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div>
-          <h3>Items in your cart</h3>
-          { renderCart(this.props.cart) }
-        </div>
         <Form 
           onSubmit={this.onSubmit}
           initialValues={{
