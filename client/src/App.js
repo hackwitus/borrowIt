@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Checkout from './Checkout';
+
+require('bootstrap')
+require('../node_modules/bootstrap/dist/css/bootstrap.min.css')
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-6 col-lg-4">
+            <Checkout cart={[
+              {
+                id: 'abc123',
+                name: 'Raspberry Pi 3'
+              },
+              {
+                id: 'def456',
+                name: 'Arduino Uno'
+              }
+            ]}/>
+          </div>
+        </div>
+        
       </div>
     );
   }
