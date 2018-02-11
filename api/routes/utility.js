@@ -3,13 +3,16 @@ const uuidv1 = require('uuid/v1')
 const moment = require('moment')
 require('dotenv').load()
 
-function requestDB(options) {
+function requestDB(options, creds) {
+  const authorization = creds ? 
+    'Basic ' + new Buffer(creds.username + ':' + creds.password ).toString('base64') :
+    'Basic ' + new Buffer(process.env.HDB_CUSTOMER_USERNAME + ':' + process.env.HDB_CUSTOMER_PASSWORD).toString('base64')
   return rp({
     method: 'POST',
-    url: process.env.HDB_ADMIN_URL,
+    url: process.env.HDB_URL,
     headers: {
       "content-type": "application/json",
-      "authorization": 'Basic ' + new Buffer(process.env.HDB_ADMIN_USERNAME + ':' + process.env.HDB_ADMIN_PASSWORD).toString('base64')
+      "authorization": authorization
     },
     body: options || {},
     json: true

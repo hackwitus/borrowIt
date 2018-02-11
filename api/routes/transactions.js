@@ -84,6 +84,33 @@ async function transactionRoutes(fastify, options) {
           })
         }
 
+        const updateInventory = await asyncForEach(request.body.items, async (item) => {
+          try {
+            const lookup = await requestDB({
+              "operation": "search_by_hash",
+              "schema": "borrowit",
+              "table": "inventory",
+              "hash_attribute": "id",
+              "hash_values": [item],
+              "get_attributes": ["*"]
+            })
+            const update = await requestDB({
+              "operation": "update",
+              "schema": "borrowit",
+              "table": "inventory",
+              "records": [
+                {
+                  "id": item,
+                  "quantity": lookup[0].quantity - 1
+                }
+              ]
+            })
+            return update
+          } catch (error) {
+            return error
+          }
+        })
+        
         const items = request.body.items.join(",")
 
         const createTransaction = await requestDB({
