@@ -12,7 +12,11 @@ class Checkout extends React.Component {
       customer: {
         phoneNumber: values.customer_phoneNumber
       },
-      items: this.props.cart,
+      items: this.props.cart.reduce((acc, item) => {
+        for (var i = 0; i < item.quantity; i++)
+          acc.push(item.id)
+        return acc
+      }, []),
       collateral: values.customer_collateral
     }
 
@@ -26,22 +30,32 @@ class Checkout extends React.Component {
 
     console.log(JSON.stringify(payload, 0, 2))
 
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       if (error) resolve(error) // resolve client side errors
 
-      try {
-        // pretend to do the server thing
-        await new Promise(resolve => setTimeout(resolve, 300)) 
-
-        form.reset()
-        resolve()
-      } catch (server_err) {
-        reject(server_err) // reject server side errors
-      }
-      
+      fetch('https://api-ahtaxdhvbo.now.sh/transactions/borrowed', {
+        method: 'POST',
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      }).then(res => res.json())
+        .then(json => {
+          console.log(JSON.stringify(json))
+          form.reset()
+          this.props.onTransactionSuccess()
+          resolve()
+        })
+        .catch(err => {
+          console.log(err)
+          reject(err)
+        })
     })
   }
   render() {
+    function validFormField(meta) {
+      return meta.touched ? ( meta.error ? 'is-invalid' : 'is-valid' ) : null 
+    }
     return (
       <React.Fragment>
         <Form 
@@ -88,7 +102,7 @@ class Checkout extends React.Component {
                       type="tel" 
                       placeholder="Enter your phone number" 
                       id="customer_phoneNumber" 
-                      className={`form-control ${meta.error && meta.touched ? 'is-invalid' : meta.touched ? 'is-valid' : null }`}
+                      className={`form-control ${validFormField(meta)}`}
                     />
                     {meta.error && meta.touched && <div className="invalid-feedback">{meta.error}</div>}
                     <small className="form-text text-muted">Valid format: 123-456-7890</small>
@@ -105,7 +119,7 @@ class Checkout extends React.Component {
                       type="tel" 
                       placeholder="Enter a brief description" 
                       id="customer_collateral" 
-                      className={`form-control ${meta.error && meta.touched ? 'is-invalid' : meta.touched ? 'is-valid' : null }`}
+                      className={`form-control ${validFormField(meta)}`}
                     />
                     {meta.error && meta.touched && <div className="invalid-feedback">{meta.error}</div>}
                     <small className="form-text text-muted">Example: "Student ID ending in 7360"</small>
@@ -134,7 +148,7 @@ class Checkout extends React.Component {
                           type="text" 
                           placeholder="Enter your name" 
                           id="customer_name" 
-                          className={`form-control ${meta.error && meta.touched ? 'is-invalid' : meta.touched ? 'is-valid' : null }`}
+                          className={`form-control ${validFormField(meta)}`}
                         />
                         {meta.error && meta.touched && <div className="invalid-feedback">{meta.error}</div>}
                       </div>
@@ -150,7 +164,7 @@ class Checkout extends React.Component {
                           type="email" 
                           placeholder="Enter your email" 
                           id="customer_email" 
-                          className={`form-control ${meta.error && meta.touched ? 'is-invalid' : meta.touched ? 'is-valid' : null }`}
+                          className={`form-control ${validFormField(meta)}`}
                         />
                         {meta.error && meta.touched && <div className="invalid-feedback">{meta.error}</div>}
                       </div>
