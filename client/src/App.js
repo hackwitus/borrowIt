@@ -43,8 +43,8 @@ class App extends Component {
 
   handleAddItemToCart(item) {
     const newInventory = this.state.inventory.map(
-      invItem => invItem.id === item.id ? 
-        { ...invItem, quantity: invItem.quantity - 1 } 
+      invItem => invItem.id === item.id ?
+        { ...invItem, quantity: invItem.quantity - 1 }
         : invItem
     )
     this.setState({
@@ -63,8 +63,8 @@ class App extends Component {
           </div>
           <div className="col-sm-12 col-md-12 col-lg-4">
             <div className="row">
-              <div className="col-sm-12 col-md-6 col-lg-12">
-                <Cart />
+              <div className="col-md-6 col-lg-12">
+                <Cart updateCart={this.state.cart}/>
               </div>
               <div className="col-sm-12 col-md-6 col-lg-12">
                 <Checkout cart={[
