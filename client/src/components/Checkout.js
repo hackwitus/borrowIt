@@ -12,7 +12,11 @@ class Checkout extends React.Component {
       customer: {
         phoneNumber: values.customer_phoneNumber
       },
-      items: this.props.cart,
+      items: this.props.cart.reduce((acc, item) => {
+        for (var i = 0; i < item.quantity; i++)
+          acc.push(item.id)
+        return acc
+      }, []),
       collateral: values.customer_collateral
     }
 
@@ -26,19 +30,26 @@ class Checkout extends React.Component {
 
     console.log(JSON.stringify(payload, 0, 2))
 
-    return new Promise(async (resolve, reject) => {
+    return new Promise((resolve, reject) => {
       if (error) resolve(error) // resolve client side errors
 
-      try {
-        // pretend to do the server thing
-        await new Promise(resolve => setTimeout(resolve, 300)) 
-
-        form.reset()
-        resolve()
-      } catch (server_err) {
-        reject(server_err) // reject server side errors
-      }
-      
+      fetch('https://api-ahtaxdhvbo.now.sh/transactions/borrowed', {
+        method: 'POST',
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      }).then(res => res.json())
+        .then(json => {
+          console.log(JSON.stringify(json))
+          form.reset()
+          this.props.onTransactionSuccess()
+          resolve()
+        })
+        .catch(err => {
+          console.log(err)
+          reject(err)
+        })
     })
   }
   render() {

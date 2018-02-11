@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Checkout from './components/Checkout';
 import Cart from './components/Cart';
 import InventoryView from './components/InventoryView';
+import 'whatwg-fetch'
 
 require('bootstrap')
 require('../node_modules/bootstrap/dist/css/bootstrap.min.css')
@@ -17,29 +18,22 @@ class App extends Component {
 
     this.handleAddItemToCart = this.handleAddItemToCart.bind(this)
     this.handleRemoveItemFromCart = this.handleRemoveItemFromCart.bind(this)
+    this.handleTransactionSuccess = this.handleTransactionSuccess.bind(this)
+    this.getInventoryFromAPI = this.getInventoryFromAPI.bind(this)
+  }
+
+  getInventoryFromAPI() {
+    fetch('https://api-ahtaxdhvbo.now.sh/inventory') 
+      .then(res => res.json())
+      .then(inventory => {
+        this.setState({ inventory })
+      })
+      .catch(err => console.log(err))
   }
 
   componentDidMount() {
     //fetch inventory
-    this.setState({
-      inventory: [
-        {
-          id: "01",
-          name: "Raspberry Pi",
-          description: "Mini computer that does really cool thing. Why is this description so damn long.",
-          quantity: 2,
-          owner: "MLH"
-        },
-        {
-          id: "02",
-          name: "Arduino Uno",
-          description: "Mini computer",
-          quantity: 3,
-          owner: "IEEE"
-        }
-      ]
-    })
-
+    this.getInventoryFromAPI()
   }
 
   handleAddItemToCart(item) {
@@ -80,6 +74,13 @@ class App extends Component {
     })
   }
 
+  handleTransactionSuccess() {
+    this.getInventoryFromAPI()
+    this.setState({
+      cart: []
+    })
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -93,7 +94,7 @@ class App extends Component {
                 <Cart cart={this.state.cart} onRemoveItemFromCart={this.handleRemoveItemFromCart} />
               </div>
               <div className="col-sm-12 col-md-6 col-lg-12">
-                <Checkout cart={this.state.cart}/>
+                <Checkout cart={this.state.cart} onTransactionSuccess={this.handleTransactionSuccess}/>
               </div>
             </div>
           </div>
