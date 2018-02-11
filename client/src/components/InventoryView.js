@@ -10,6 +10,7 @@ class InventoryView extends React.Component {
 
     this.updatePredicate = this.updatePredicate.bind(this)
   }
+
   componentDidMount() {
     this.updatePredicate()
     window.addEventListener("resize", this.updatePredicate)
@@ -27,7 +28,7 @@ class InventoryView extends React.Component {
           this.state.isMobile ? (
             <p className="text-danger">Replace me with a mobile component</p>
           ) : (
-            <InventoryTable />
+            <InventoryTable {...this.props} />
           )
         }
       </React.Fragment>
