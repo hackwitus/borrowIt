@@ -11,3 +11,13 @@ The client is built using [Bootstrap 4](https://getbootstrap.com/docs/4.0/gettin
 [Open Iconic](https://useiconic.com/open) Icons are also available using the bootstrap implementation method
 
 All components can be found in the [`src/components`](/src/components) directory
+
+You must create a `.env` file in the root of this directory and define the following variables:
+
+```
+REACT_APP_AUTH_SECRET=
+REACT_APP_AUTH_USERNAME=
+REACT_APP_AUTH_PASSWORD=
+```
+
+Whatever you set as the username and password is what will be used to login as an admin.
