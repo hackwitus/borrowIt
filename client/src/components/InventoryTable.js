@@ -7,10 +7,6 @@ var width = {
 
 var i = -1;
 
-const addItem = addItemToCart => {
-  return "a"
-}
-
 const renderTable = items => {
   console.log(items)
   return items ?  (
@@ -30,7 +26,7 @@ const renderTable = items => {
           <th scope="row">{i++}</th>
           <th scope="row"><button>-</button></th>
           <th scope="row">{item.quantity}</th>
-          <th scope="row"><button onClick={this.quantity + 1}>+</button></th>
+          <th scope="row"><button onClick={this.props.onAddItem(item)}>+</button></th>
           <td><span className={item.quantity > 0 ? ("oi oi-check text-success") : ("oi oi-x text-danger")}></span></td>
           <td>{item.name}</td>
           <td>{item.description}</td>
@@ -48,7 +44,6 @@ class InventoryTable extends React.Component {
     return (
       <div>
         { renderTable(this.props.inventoryItems) }
-        { addItem(this.props.tableFunctions) }
       </div>
     )
   }

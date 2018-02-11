@@ -6,43 +6,30 @@ import InventoryView from './components/InventoryView';
 require('bootstrap')
 require('../node_modules/bootstrap/dist/css/bootstrap.min.css')
 
-function addItemToCart(item) {
-  console.log(item)
-}
-
-function handleAddItem(item) {
-
-}
-
-function handleRemoveItem(item) {
-
-}
-
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      cart: []
+    }
+
+    this.addItemToCart = this.addItemToCart.bind(this)
+  }
+
+  addItemToCart(item) {
+    this.setState({
+      cart: [ ...this.state.cart, item ]
+    })
+    console.log(item)
+  }
+
   render() {
     return (
       <div className="container-fluid">
         <div className="row">
           <div className="col-md-12 col-lg-8">
-            <InventoryView inventoryItems={[
-              {
-                id: "01",
-                name: "Raspberry Pi",
-                description: "Mini computer",
-                quantity: 2,
-                owner: "MLH"
-              },
-              {
-                id: "02",
-                name: "Raspberry Pi 2",
-                description: "Mini computer",
-                quantity: 0,
-                owner: "IEEE"
-              }
-            ]}
-            tableFunctions={
-              addItemToCart()
-            }/>
+            <InventoryView onAddItem={this.addItemToCart}/>
           </div>
           <div className="col-md-12 col-lg-4">
             <div className="row">
