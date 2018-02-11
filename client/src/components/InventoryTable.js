@@ -7,7 +7,7 @@ var width = {
 
 var i = -1;
 
-const renderTable = items => {
+const renderTable = (items, inventoryTableScope) => {
   console.log(items)
   return items ?  (
     <table style={width}>
@@ -26,7 +26,7 @@ const renderTable = items => {
           <th scope="row">{i++}</th>
           <th scope="row"><button>-</button></th>
           <th scope="row">{item.quantity}</th>
-          <th scope="row"><button onClick={this.props.onAddItem(item)}>+</button></th>
+          <th scope="row"><button onClick={inventoryTableScope.handleAddItem.bind(this, item)}>+</button></th>
           <td><span className={item.quantity > 0 ? ("oi oi-check text-success") : ("oi oi-x text-danger")}></span></td>
           <td>{item.name}</td>
           <td>{item.description}</td>
@@ -40,10 +40,14 @@ const renderTable = items => {
 }
 
 class InventoryTable extends React.Component {
+  handleAddItem(item, e) {
+    this.props.onAddItem(item)
+  }
+
   render() {
     return (
       <div>
-        { renderTable(this.props.inventoryItems) }
+        { renderTable(this.props.inventoryItems, this) }
       </div>
     )
   }
