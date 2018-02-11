@@ -1,0 +1,3 @@
+HDB_CUSTOMER_USERNAME=fake_username
+HDB_CUSTOMER_PASSWORD=fake_password
+HDB_CUSTOMER_URL=fake_url
