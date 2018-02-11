@@ -5,8 +5,7 @@ class InventoryView extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      isMobile: false,
-      inventoryItems: []
+      isMobile: false
     }
 
     this.updatePredicate = this.updatePredicate.bind(this)
@@ -29,22 +28,7 @@ class InventoryView extends React.Component {
           this.state.isMobile ? (
             <p className="text-danger">Replace me with a mobile component</p>
           ) : (
-            <InventoryTable {...this.props} inventoryItems={[
-              {
-                id: "01",
-                name: "Raspberry Pi",
-                description: "Mini computer",
-                quantity: 2,
-                owner: "MLH"
-              },
-              {
-                id: "02",
-                name: "Raspberry Pi 2",
-                description: "Mini computer",
-                quantity: 0,
-                owner: "IEEE"
-              }
-            ]} />
+            <InventoryTable {...this.props} />
           )
         }
       </React.Fragment>

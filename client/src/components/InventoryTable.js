@@ -8,32 +8,36 @@ class InventoryTable extends React.Component {
   }
 
   renderTable() {
-    const items = this.props.inventoryItems || []
-    return items.length > 0 ?  (
+    const items = this.props.inventory || []
+    return items.length > 0 ? (
       <table className="table">
-        <thead>
+        <thead className="thead-light">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">-</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">+</th>
-            <th scope="col">Available</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Owner</th>
+            <th scope="col">Quantity</th>
+            <th scope="col" className="text-center">Add To Cart</th>
           </tr>
         </thead>
         <tbody>
           {items.map((item, i) => (
-            <tr key={i}>
+            <tr key={i} >
               <th scope="row">{i}</th>
-              <th scope="row"><button> - </button></th>
-              <th scope="row">{item.quantity}</th>
-              <th scope="row"><button onClick={this.handleAddItem.bind(this, item)}>+</button></th>
-              <td><span className={item.quantity > 0 ? ("oi oi-check text-success") : ("oi oi-x text-danger")}></span></td>
               <td>{item.name}</td>
               <td>{item.description}</td>
               <td>{item.owner}</td>
+              <th scope="row"><span className={item.quantity === 0 ? 'text-danger' : 'text-success'}>{item.quantity}</span></th>
+              <th scope="row" className="text-center">
+                <button 
+                  className="btn btn-success"
+                  onClick={this.handleAddItemToCart.bind(this, item)}
+                  disabled={item.quantity === 0}
+                >
+                  <span className="oi oi-plus"></span>
+                </button>
+              </th>
             </tr>
           ))}
         </tbody>
@@ -43,15 +47,15 @@ class InventoryTable extends React.Component {
     )
   }
 
-  handleAddItem(item, e) {
-    this.props.onAddItem(item)
+  handleAddItemToCart(item, e) {
+    this.props.onAddItemToCart(item)
   }
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         { this.renderTable() }
-      </div>
+      </React.Fragment>
     )
   }
 }

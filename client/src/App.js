@@ -11,15 +11,45 @@ class App extends Component {
     super(props)
 
     this.state = {
-      cart: []
+      cart: [],
+      inventory: []
     }
 
-    this.addItemToCart = this.addItemToCart.bind(this)
+    this.handleAddItemToCart = this.handleAddItemToCart.bind(this)
   }
 
-  addItemToCart(item) {
+  componentDidMount() {
+    //fetch inventory
     this.setState({
-      cart: [ ...this.state.cart, item ]
+      inventory: [
+        {
+          id: "01",
+          name: "Raspberry Pi",
+          description: "Mini computer",
+          quantity: 2,
+          owner: "MLH"
+        },
+        {
+          id: "02",
+          name: "Arduino Uno",
+          description: "Mini computer",
+          quantity: 0,
+          owner: "IEEE"
+        }
+      ]
+    })
+
+  }
+
+  handleAddItemToCart(item) {
+    const newInventory = this.state.inventory.map(
+      invItem => invItem.id === item.id ? 
+        { ...invItem, quantity: invItem.quantity - 1 } 
+        : invItem
+    )
+    this.setState({
+      cart: [ ...this.state.cart, item ],
+      inventory: newInventory
     })
     console.log(item)
   }
@@ -28,15 +58,15 @@ class App extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-12 col-lg-8">
-            <InventoryView onAddItem={this.addItemToCart}/>
+          <div className="col-sm-12 col-md-12 col-lg-8">
+            <InventoryView onAddItemToCart={this.handleAddItemToCart} inventory={this.state.inventory}/>
           </div>
-          <div className="col-md-12 col-lg-4">
+          <div className="col-sm-12 col-md-12 col-lg-4">
             <div className="row">
-              <div className="col-md-6 col-lg-12">
+              <div className="col-sm-12 col-md-6 col-lg-12">
                 <Cart />
               </div>
-              <div className="col-md-6 col-lg-12">
+              <div className="col-sm-12 col-md-6 col-lg-12">
                 <Checkout cart={[
                   {
                     id: 'abc123',
