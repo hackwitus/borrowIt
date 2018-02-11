@@ -1,5 +1,7 @@
 # API
 
+API Url = https://api-ahtaxdhvbo.now.sh
+
 Read all inventory items `/inventory` <- customer
 Read an inventory item `/inventory/:id` <- customer
 Insert an inventory item `/inventory/new` <- admin
