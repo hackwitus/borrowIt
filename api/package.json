@@ -4,11 +4,18 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
+    "setup": "npm install && node setup.js",
     "dev": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "fastify": "^1.0.0-rc.1"
+    "cors": "^2.8.4",
+    "dotenv": "^5.0.0",
+    "fastify": "^1.0.0-rc.1",
+    "moment": "^2.20.1",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5",
+    "uuid": "^3.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.14.12"
