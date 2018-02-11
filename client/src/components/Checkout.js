@@ -53,6 +53,9 @@ class Checkout extends React.Component {
     })
   }
   render() {
+    function validFormField(meta) {
+      return meta.touched ? ( meta.error ? 'is-invalid' : 'is-valid' ) : null 
+    }
     return (
       <React.Fragment>
         <Form 
@@ -99,7 +102,7 @@ class Checkout extends React.Component {
                       type="tel" 
                       placeholder="Enter your phone number" 
                       id="customer_phoneNumber" 
-                      className={`form-control ${meta.error && meta.touched ? 'is-invalid' : meta.touched ? 'is-valid' : null }`}
+                      className={`form-control ${validFormField(meta)}`}
                     />
                     {meta.error && meta.touched && <div className="invalid-feedback">{meta.error}</div>}
                     <small className="form-text text-muted">Valid format: 123-456-7890</small>
@@ -116,7 +119,7 @@ class Checkout extends React.Component {
                       type="tel" 
                       placeholder="Enter a brief description" 
                       id="customer_collateral" 
-                      className={`form-control ${meta.error && meta.touched ? 'is-invalid' : meta.touched ? 'is-valid' : null }`}
+                      className={`form-control ${validFormField(meta)}`}
                     />
                     {meta.error && meta.touched && <div className="invalid-feedback">{meta.error}</div>}
                     <small className="form-text text-muted">Example: "Student ID ending in 7360"</small>
@@ -145,7 +148,7 @@ class Checkout extends React.Component {
                           type="text" 
                           placeholder="Enter your name" 
                           id="customer_name" 
-                          className={`form-control ${meta.error && meta.touched ? 'is-invalid' : meta.touched ? 'is-valid' : null }`}
+                          className={`form-control ${validFormField(meta)}`}
                         />
                         {meta.error && meta.touched && <div className="invalid-feedback">{meta.error}</div>}
                       </div>
@@ -161,7 +164,7 @@ class Checkout extends React.Component {
                           type="email" 
                           placeholder="Enter your email" 
                           id="customer_email" 
-                          className={`form-control ${meta.error && meta.touched ? 'is-invalid' : meta.touched ? 'is-valid' : null }`}
+                          className={`form-control ${validFormField(meta)}`}
                         />
                         {meta.error && meta.touched && <div className="invalid-feedback">{meta.error}</div>}
                       </div>
