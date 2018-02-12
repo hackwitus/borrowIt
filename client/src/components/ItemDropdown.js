@@ -2,19 +2,22 @@ import React from 'react';
 
 class ItemDropdown extends React.Component {
   render() {
-    return (
+    const items = this.props.items.split(',') || []
+    return items.length > 0 ? (
       <div className="btn-group">
-        <button 
-          type="button" 
+        <button
+          type="button"
           className="btn btn-primary dropdown-toggle"
           data-toggle="dropdown"
-        >3 Items</button>
+        >{items.length} Items</button>
         <div className="dropdown-menu">
-          <span className="dropdown-item">Arudino Uno</span>
-          <span className="dropdown-item">Raspberry Pi 0</span>
-          <span className="dropdown-item">ASUS Monitor</span>
+          {items.map((item, i) => (
+            <span key={i} className="dropdown-item">{item}</span>
+          ))}
         </div>
       </div>
+    ) : (
+      <p>This transaction is empty</p>
     )
   }
 }
