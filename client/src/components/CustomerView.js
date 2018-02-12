@@ -1,7 +1,7 @@
 import React from 'react';
-import Checkout from './Checkout';
-import Cart from './Cart';
-import InventoryView from './InventoryView';
+import Checkout from './customer/Checkout';
+import Cart from './customer/Cart';
+import InventoryView from './customer/InventoryView';
 import 'whatwg-fetch'
 
 class CustomerView extends React.Component {

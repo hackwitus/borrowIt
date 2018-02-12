@@ -1,6 +1,6 @@
 import React from 'react';
-import TransactionTable from './TransactionTable'
-import AdminInventoryTable from './AdminInventoryTable'
+import TransactionTable from './admin/TransactionTable'
+import AdminInventoryTable from './admin/AdminInventoryTable'
 
 class AdminView extends React.Component {
   constructor(props) {

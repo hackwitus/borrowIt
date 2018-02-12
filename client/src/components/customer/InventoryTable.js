@@ -53,7 +53,9 @@ class InventoryTable extends React.Component {
     return (
       <React.Fragment>
         <h2>Inventory Table</h2>
-        { this.renderTable() }
+        <div className="table-responsive">
+          { this.renderTable() }
+        </div>
       </React.Fragment>
     )
   }

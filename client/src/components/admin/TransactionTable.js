@@ -75,48 +75,50 @@ class TransactionTable extends React.Component {
     return (
       <React.Fragment>
         <h2>Transaction Table</h2>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Customer Name</th>
-              <th>Items</th>
-              <th>Collateral</th>
-              <th>Controls</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              transactions.map((transaction, i) => (
-                <tr key={i}>
-                  <td>{transaction.customer}</td>
-                  <td><ItemDropdown items={transaction.items} inventory={this.props.inventory} /></td>
-                  <td>{transaction.collateral}</td>
-                  <td>
-                    <div className="btn-group">
-                      <button 
-                        className="btn btn-success" 
-                        type="button"
-                        onClick={this.handleReturn.bind(this, transaction.id)}
-                        disabled={transaction.timeReturned}
-                      >Return</button>
-                      <button 
-                        className="btn btn-danger" 
-                        type="button"
-                        onClick={this.handleDelete.bind(this, transaction.id)}
-                        disabled={!transaction.timeReturned}
-                      >Delete</button>
-                      <button
-                        className="btn btn-info"
-                        type="button"
-                        onClick={this.handleEdit.bind(this, transaction.id)}
-                      >Edit</button>
-                    </div>
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
+
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Customer Name</th>
+                <th>Items</th>
+                <th>Collateral</th>
+                <th>Controls</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                transactions.map((transaction, i) => (
+                  <tr key={i}>
+                    <td>{transaction.customer}</td>
+                    <td><ItemDropdown items={transaction.items} inventory={this.props.inventory} /></td>
+                    <td>{transaction.collateral}</td>
+                    <td>
+                      <div className="btn-group">
+                        <button 
+                          className="btn btn-success" 
+                          type="button"
+                          onClick={this.handleReturn.bind(this, transaction.id)}
+                          disabled={transaction.timeReturned}
+                        >Return</button>
+                        <button 
+                          className="btn btn-danger" 
+                          type="button"
+                          onClick={this.handleDelete.bind(this, transaction.id)}
+                          disabled={!transaction.timeReturned}
+                        >Delete</button>
+                        <button
+                          className="btn btn-info"
+                          type="button"
+                          onClick={this.handleEdit.bind(this, transaction.id)}
+                        >Edit</button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+
       </React.Fragment>
     )
   }
