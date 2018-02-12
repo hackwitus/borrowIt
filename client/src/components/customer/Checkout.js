@@ -28,8 +28,6 @@ class Checkout extends React.Component {
       }
     } 
 
-    console.log(JSON.stringify(payload, 0, 2))
-
     return new Promise((resolve, reject) => {
       if (error) resolve(error) // resolve client side errors
 
@@ -41,7 +39,6 @@ class Checkout extends React.Component {
         body: JSON.stringify(payload)
       }).then(res => res.json())
         .then(json => {
-          console.log(JSON.stringify(json))
           form.reset()
           this.props.onTransactionSuccess()
           resolve()

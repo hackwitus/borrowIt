@@ -15,8 +15,6 @@ class App extends Component {
     this.logout = this.logout.bind(this)
   }
   login(creds, cb) {
-    console.log(JSON.stringify(creds, 2, 0))
-
     this.state.auth.verify(this.state.auth.sign(creds))
       .then(() => this.setState({
         isAuthenticated: true
