@@ -41,7 +41,7 @@ class InventoryTable extends React.Component {
         </tbody>
       </table>
     ) : (
-      <p>Your table is empty.</p>
+      <p>No items available to borrow. Sorry!</p>
     )
   }
 
