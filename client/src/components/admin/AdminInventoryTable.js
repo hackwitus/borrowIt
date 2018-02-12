@@ -10,7 +10,6 @@ class AdminInventoryTable extends React.Component {
   }
 
   handleAddItemToTable(item, e) {
-    console.log(item)
     fetch('https://api-ahtaxdhvbo.now.sh/inventory/new', {
       method: "POST",
       "headers": {
@@ -32,7 +31,6 @@ class AdminInventoryTable extends React.Component {
   }
 
   handleDeleteItemFromTable(itemId, e) {
-    console.log(itemId)
     fetch('https://api-ahtaxdhvbo.now.sh/inventory/delete', {
       method: "POST",
       "headers": {
@@ -101,7 +99,6 @@ class AdminInventoryTable extends React.Component {
   }
 
   render() {
-    console.log(this.props.inventory)
     return (
       <React.Fragment>
         <h2>Admin Inventory Table</h2>

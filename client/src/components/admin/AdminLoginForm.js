@@ -10,7 +10,6 @@ class AdminLoginForm extends React.Component {
     this.onSubmit = this.onSubmit.bind(this)
   }
   onSubmit(values, form) {
-    console.log(JSON.stringify(values, 0, 2))
     this.props.onLogin({
       username: values.admin_username,
       password: values.admin_password
