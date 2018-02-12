@@ -1,15 +1,18 @@
 import React from 'react';
 import TransactionTable from './TransactionTable'
+import AdminInventoryTable from './AdminInventoryTable'
 
 class AdminView extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      transactions: []
+      transactions: [],
+      inventory: []
     }
 
     this.getTransactionsFromAPI = this.getTransactionsFromAPI.bind(this)
+    this.getInventoryFromAPI = this.getInventoryFromAPI.bind(this)
   }
 
   getTransactionsFromAPI() {
@@ -20,9 +23,17 @@ class AdminView extends React.Component {
       })
       .catch(err => console.log(err))
   }
-
+  getInventoryFromAPI() {
+    fetch('https://api-ahtaxdhvbo.now.sh/inventory') 
+      .then(res => res.json())
+      .then(inventory => {
+        this.setState({ inventory })
+      })
+      .catch(err => console.log(err))
+  }
   componentDidMount() {
     this.getTransactionsFromAPI()
+    this.getInventoryFromAPI()
   }
 
   render() {
@@ -30,7 +41,14 @@ class AdminView extends React.Component {
       <div className="container-fluid">
         <div className="row">
           <div className="col-12">
-            <TransactionTable transactions={this.state.transactions} onReturnItems={this.handleReturnItems}/>
+            <AdminInventoryTable
+              inventory={this.state.inventory}
+            />
+            <TransactionTable 
+              transactions={this.state.transactions}  
+              onReturnItems={this.handleReturnItems}
+              inventory={this.state.inventory}
+            />
           </div>
         </div>
       </div>

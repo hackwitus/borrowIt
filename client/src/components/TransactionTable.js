@@ -6,18 +6,7 @@ class TransactionTable extends React.Component {
     super(props)
     this.state = {
       transactions: [],
-      customer: {},
-      items: [
-        {
-          "name": "Arduino Uno"
-        },
-        {
-          "name": "Raspberry Pi 0"
-        },
-        {
-          "name": "ASUS Monitor"
-        }
-      ]
+      customer: {}
     }
     this.getTransactionFromAPI = this.getTransactionFromAPI.bind(this)
     this.getCustomerFromAPI = this.getCustomerFromAPI.bind(this)
@@ -83,48 +72,51 @@ class TransactionTable extends React.Component {
   render() {
     const transactions = this.state.transactions || []
     return (
-      <table className="table">
-        <thead>
-          <tr>
-            <th>Customer Name</th>
-            <th>Items</th>
-            <th>Collateral</th>
-            <th>Controls</th>
-          </tr>
-        </thead>
-        <tbody>
-          {
-            transactions.map((transaction, i) => (
-              <tr key={i}>
-                <td>{transaction.customer}</td>
-                <td><ItemDropdown items={transaction.items} /></td>
-                <td>{transaction.collateral}</td>
-                <td>
-                  <div className="btn-group">
-                    <button 
-                      className="btn btn-success" 
-                      type="button"
-                      onClick={this.handleReturn.bind(this, transaction.id)}
-                      disabled={transaction.timeReturned}
-                    >Return</button>
-                    <button 
-                      className="btn btn-danger" 
-                      type="button"
-                      onClick={this.handleDelete.bind(this, transaction.id)}
-                      disabled={!transaction.timeReturned}
-                    >Delete</button>
-                    <button
-                      className="btn btn-info"
-                      type="button"
-                      onClick={this.handleEdit.bind(this, transaction.id)}
-                    >Edit</button>
-                  </div>
-                </td>
-              </tr>
-            ))
-          }
-        </tbody>
-      </table>
+      <React.Fragment>
+        <h2>Transaction Table</h2>
+        <table className="table">
+          <thead>
+            <tr>
+              <th>Customer Name</th>
+              <th>Items</th>
+              <th>Collateral</th>
+              <th>Controls</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              transactions.map((transaction, i) => (
+                <tr key={i}>
+                  <td>{transaction.customer}</td>
+                  <td><ItemDropdown items={transaction.items} inventory={this.props.inventory} /></td>
+                  <td>{transaction.collateral}</td>
+                  <td>
+                    <div className="btn-group">
+                      <button 
+                        className="btn btn-success" 
+                        type="button"
+                        onClick={this.handleReturn.bind(this, transaction.id)}
+                        disabled={transaction.timeReturned}
+                      >Return</button>
+                      <button 
+                        className="btn btn-danger" 
+                        type="button"
+                        onClick={this.handleDelete.bind(this, transaction.id)}
+                        disabled={!transaction.timeReturned}
+                      >Delete</button>
+                      <button
+                        className="btn btn-info"
+                        type="button"
+                        onClick={this.handleEdit.bind(this, transaction.id)}
+                      >Edit</button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </React.Fragment>
     )
   }
 }
