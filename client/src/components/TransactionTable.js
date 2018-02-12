@@ -41,6 +41,7 @@ class TransactionTable extends React.Component {
       .then(msg => {
         console.log(msg)
         this.getTransactionFromAPI()
+        this.props.getInventory()
       })
       .catch(err => console.log(err))
   }

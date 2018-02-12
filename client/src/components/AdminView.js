@@ -43,11 +43,13 @@ class AdminView extends React.Component {
           <div className="col-12">
             <AdminInventoryTable
               inventory={this.state.inventory}
+              getInventory={this.getInventoryFromAPI}
             />
             <TransactionTable 
               transactions={this.state.transactions}  
               onReturnItems={this.handleReturnItems}
               inventory={this.state.inventory}
+              getInventory={this.getInventoryFromAPI}
             />
           </div>
         </div>
