@@ -1,5 +1,9 @@
 # BorrowIt
-Point of Borrow application repository. Developed by HackWITus Team
+
+BorrowIt is a point-of-sales inspired inventory management solution for checking out and returning items. The Wentworth Hackathon Team came up with idea when evaluating our own Hackathon event, HackWITus. At our event, attendees are able to borrow hardware and tools to assist them in their hackathon projects. However, monitoring what is being rented out and to whom was difficult and required a messy excel spreadsheet. The implementation of BorrowIt doesn't just stop at Hackathons, but is applicable for many other scenarioes such as libraries, schools, and other form of rental services. 
+
+BorrowIt is built as a progressive web application using React.js, Node.js, Fastify, and HarperDB. We are leverging HarperDB's quick hash-indexing database to store items, customers, and transactions. We have developed a standard REST API using Fastify and Node.js. Finally, the client is built using React.js and Bootstrap v4. 
+
 
 # How to use this repository
 
