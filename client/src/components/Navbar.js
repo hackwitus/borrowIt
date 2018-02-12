@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminLoginForm from './AdminLoginForm';
+import AdminLoginForm from './admin/AdminLoginForm';
 
 class Navbar extends React.Component {
   render() {

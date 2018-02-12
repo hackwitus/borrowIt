@@ -9,6 +9,7 @@ class AddInventoryForm extends React.Component {
   }
   onSubmit(values, form) {
     console.log(JSON.stringify(values, 0, 2))
+    form.reset()
     this.props.onAddItem(values)
   }
   render() {

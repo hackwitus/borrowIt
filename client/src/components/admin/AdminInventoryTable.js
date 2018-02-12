@@ -105,7 +105,9 @@ class AdminInventoryTable extends React.Component {
     return (
       <React.Fragment>
         <h2>Admin Inventory Table</h2>
-        { this.renderTable() }
+        <div className="table-responsive">
+          { this.renderTable() }
+        </div>
       </React.Fragment>
     )
   }
