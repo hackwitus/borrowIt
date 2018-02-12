@@ -39,7 +39,7 @@ class App extends Component {
           onLogin={this.login}
           onLogout={this.logout}
         />
-        {this.state.isAuthenticated ? (
+        {!this.state.isAuthenticated ? (
           <AdminView />
         ) : (
           <CustomerView />
