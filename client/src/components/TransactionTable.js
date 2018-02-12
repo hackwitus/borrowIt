@@ -97,7 +97,7 @@ class TransactionTable extends React.Component {
             transactions.map((transaction, i) => (
               <tr key={i}>
                 <td>{transaction.customer}</td>
-                <td><ItemDropdown items={transaction.items ? transaction.items.split(",") : []} /></td>
+                <td><ItemDropdown items={transaction.items} /></td>
                 <td>{transaction.collateral}</td>
                 <td>
                   <div className="btn-group">
