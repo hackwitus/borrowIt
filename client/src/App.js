@@ -16,7 +16,7 @@ class App extends Component {
   }
   login(creds, cb) {
     console.log(JSON.stringify(creds, 2, 0))
-    
+
     this.state.auth.verify(this.state.auth.sign(creds))
       .then(() => this.setState({
         isAuthenticated: true
@@ -34,9 +34,9 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar 
-          isAuthenticated={this.state.isAuthenticated} 
-          onLogin={this.login} 
+        <Navbar
+          isAuthenticated={this.state.isAuthenticated}
+          onLogin={this.login}
           onLogout={this.logout}
         />
         {!this.state.isAuthenticated ? (
