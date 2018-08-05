@@ -10,7 +10,7 @@ BorrowIt is built as a progressive web application using React.js, Node.js, Fast
 
 We are following a mono-repo structure for this project. That means both the client and API are in this repository! Now even though this makes deployment a bit harder, it makes developing a lot easier for everyone else. 
 
-Tip: Ensure that you `npm install` in the client directory, separately. If you do not independently `npm install` in the client directory it will not install the needed packages there at all. 
+Tip: Ensure that you `npm install` in the client directory, separately. If you do not independently `npm install` in the client directory it will not install the needed packages there at all.   
 
 If you'd like to run both the client and the api at the same in one terminal you can use `npm run start-all`; alternatively you can run `npm run start-api` in one terminal tab and `npm run start-client` in another. You can also `cd` into one of the directories and run their standard start commands.
 
